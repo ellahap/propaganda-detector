@@ -192,3 +192,4 @@ class ImplementNews():
 if __name__ == "__main__":
     nlp = spacy.load("en_core_web_sm")
     ImplementHQP.annotate()
+    ImplementNews.annotate()
