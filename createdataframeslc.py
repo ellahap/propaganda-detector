@@ -40,6 +40,11 @@ class CreateDataframeSLC:
         # Creating the labels dataframe using the helper function
         labels_df = CreateLabelsDataframeSLC.load_labels(path_to_labels)
 
+        # print("Labels DataFrame Preview:")
+        # print(labels_df.head())
+        # print("Labels DataFrame Shape:", labels_df.shape)
+
+
         print("Looping through the articles")
         # Creating the series to be used to match the indexes of the single words within the loop
 
@@ -60,9 +65,13 @@ class CreateDataframeSLC:
         str_list = [x for x in lst if x[0] != ['']] # Removing the empty lists from the dataset
         # print(str_list)
 
+
         # Merging the labels dataframe with the sentences created in the previous loop
         sentences = pd.DataFrame(str_list, columns=['sentence', 'article_id', 'line'])
-        # print(sentences)
+        # print("Sentences DataFrame Preview:")
+        # print(sentences.head())
+        # print("Sentences DataFrame Shape:", sentences.shape)
+
 
         for index, tok in labels_df.iterrows():
             # Get word data
@@ -82,8 +91,16 @@ class CreateDataframeSLC:
 
         # Create a pickle of the dataframe
         print('Saving dataframe..')
-        final_df.to_pickle(savepath)
-        print("Completed")
+
+        # Save as pickle
+        final_df.to_pickle(savepath + ".pkl")
+
+        # Save as CSV
+        csv_path = savepath + ".csv"
+        final_df.to_csv(csv_path, index=False, encoding="utf-8")
+
+        print(f"Completed. Data saved as:\n - Pickle: {savepath}.pkl\n - CSV: {csv_path}")
+
 
         return final_df
 

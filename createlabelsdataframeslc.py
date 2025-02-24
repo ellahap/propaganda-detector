@@ -23,6 +23,7 @@ class CreateLabelsDataframeSLC:
 
         data = []
 
+
         for dirs, subdir, files in os.walk(path):  # Go through the directory with the files
             for file in files:
                 filepath = dirs + '/' + file
@@ -32,6 +33,7 @@ class CreateLabelsDataframeSLC:
                         line = line.strip().split('\t')
                         # print(line)
                         data.append(line)
+
 
         dataframe = pd.DataFrame(data, columns=['article_id', 'line',
                                                 'is_propaganda'])

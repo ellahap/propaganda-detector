@@ -4,3 +4,5 @@
 .DS_Store
 .datasets/slclabelsdev
 .datasets/slcarticlesdev
+annotated_df_tweets.csv
+df_tweets_HiQualProp.csv
